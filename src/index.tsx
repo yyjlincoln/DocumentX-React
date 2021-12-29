@@ -1,12 +1,30 @@
+// Basics
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
+
+// Global Styles
+import './index.css';
+
+// App Views
+import App from './App';
+import { AppFrame, Home } from './views/Global';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route path="" element={<AppFrame />} >
+            <Route path="" element={<Home />} />
+            <Route path="test" element={<Home />} />
+          </Route>
+          <Route path="*" element={<AppFrame />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
