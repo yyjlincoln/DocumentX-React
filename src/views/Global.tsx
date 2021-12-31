@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react"
 import { Outlet } from "react-router"
 import PageFrame from "../components/PageFrame"
-import { Text } from "./StyledComponents"
+import { Text } from "../components/StyledComponents"
 import logo from "../assets/logo.png"
 
 const SetLoadingContext = React.createContext<any>(null)
@@ -14,7 +14,7 @@ export function AppFrame() {
 
     useEffect(() => {
         setTimeout(() => {
-            // App Loading
+            
             setAppLoading(false)
         }, 1000)
     }, [])
@@ -58,7 +58,7 @@ export function Home() {
         <PageFrame spacing={true}>
             <div className="flex flex-row flex-1 w-full h-full justify-center">
                 <div className="flex flex-col justify-center">
-                    <Text type="default primary title">Home</Text>
+                    <Text type="main primary title">Home</Text>
                 </div>
                 <div className="flex flex-col">
                 </div>

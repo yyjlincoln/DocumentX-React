@@ -1,5 +1,5 @@
 interface TextProps {
-    type: string,
+    type?: string,
     children?: React.ReactNode,
     className?: string,
     style?: React.CSSProperties
@@ -10,7 +10,7 @@ interface ElementStyle {
 }
 
 const TextStyles: ElementStyle = {
-    "default": ["text-2xl font-bold"],
+    "main": ["text-2xl font-bold"],
     "primary": ["", {
         color: "#1E6091"
     }],
@@ -19,18 +19,26 @@ const TextStyles: ElementStyle = {
     }],
     "title": ["text-4xl font-bold"],
     "normal": [""],
+    "default": [""],
+    "nav":["font-bold text-lg"],
+    "black": ["text-black"],
+    "gray": ["text-gray-800"],
 }
 
 export function Text({ type, children, className, style }: TextProps) {
     return CompileClassess(TextStyles, type, children, className, style)
 }
 
-function CompileClassess(from: ElementStyle, type: string, children?: React.ReactNode, className?: string, style?: React.CSSProperties) {
+function CompileClassess(from: ElementStyle, type?: string, children?: React.ReactNode, className?: string, style?: React.CSSProperties) {
     var classes = ""
     var css = {}
 
+    if (!type) {
+        type = "default"
+    }
+
     const typeSplit = type.split(" ")
-    
+
     typeSplit.forEach((type) => {
         classes += ` ${(from[type] ?? [])[0]}`
         css = {
