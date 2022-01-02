@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from "react"
 import { Outlet, useNavigate } from "react-router"
 import PageFrame from "../components/PageFrame"
@@ -54,26 +55,22 @@ export function Home() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        // setLoading(true)
         setLoading(false)
         setMessage("Loading Home...")
         setTimeout(() => {
             setLoading(false)
         }, 1000);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
         <div className="flex flex-row flex-1 w-full h-full justify-center">
             <div className="flex flex-col justify-center text-center">
-                <img src={logo} className="w-48 h-48 mx-auto" alt="Logo"></img>
+                <img src={logo} className="w-48 h-48 object-contain mx-auto" alt="Logo"></img>
                 <Text type="main primary" responsive="text-4xl">DocumentX 2.0</Text>
                 <Text type="main secondary" responsive="text-3xl mt-2">Lots of new designs</Text>
-                <Button onClick={() => {
+                <Button className="mx-auto" onClick={() => {
                     navigate("/register")
-                }}>Get Started</Button>
-            </div>
-            <div className="flex flex-col">
+                }} responsive="mt-8">Get Started</Button>
             </div>
         </div>
     )
@@ -103,5 +100,21 @@ export function LoadingPage({ message }: LoadingPageProps) {
                 )}
             </div>
         </PageFrame>
+    )
+}
+
+export function NotFound() {
+    const setPageSettings = useContext(PageSettingsContext)
+    setPageSettings({
+        // navigation: false
+    })
+    return (
+        <div>
+            <Text type="main primary" responsive="text-3xl">Not Found</Text>
+            <Text type="main secondary" responsive="text-2xl">We could not find the requested page.</Text>
+            
+            <Button>Home</Button>
+
+        </div>
     )
 }

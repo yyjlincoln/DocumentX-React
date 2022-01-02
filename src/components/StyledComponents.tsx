@@ -47,6 +47,10 @@ const GlobalStyled: ElementStyle = {
     }],
     "theme-1": ["", {
         background: "#168AAD"
+    }],
+    "bg-blur": ["", {
+        backgroundColor: "rgba(255, 255, 255, 0.72)",
+        backdropFilter: "saturate(180%) blur(20px)",
     }]
 }
 
@@ -58,12 +62,10 @@ export function Styled({ type, children, className, responsive, style, ...args }
     return CompileClassess(GlobalStyled, type, children, className, responsive, style, args)
 }
 
-export function Button({ themeClass = "theme-1", children, ...args }: { themeClass?: string, children?: React.ReactNode, onClick?: () => void }) {
+export function Button({ themeClass = "theme-1", children, className, ...args }: (ThemedProps & { themeClass?: string, children?: React.ReactNode, onClick?: () => void, [k: string]: any })) {
     return (
-        <Styled className="flex flex-row justify-center" responsive="mt-8">
-            <Styled type={themeClass} className="rounded-lg px-4 py-4 flex flex-row select-none cursor-pointer" {...args}>
-                <Text type="button-text" responsive="text-xl">{children}</Text>
-            </Styled>
+        <Styled type={themeClass} className={`w-fit rounded-lg px-4 py-4 flex flex-row select-none cursor-pointer ${className}`} {...args}>
+            <Text type="button-text" responsive="text-xl">{children}</Text>
         </Styled>
     )
 }

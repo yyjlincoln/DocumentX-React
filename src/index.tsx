@@ -8,9 +8,11 @@ import './index.css';
 
 // App Views
 import App from './App';
-import { AppFrame, Home } from './views/Global';
-import { Dashboard, Library } from './views/Main';
-import { Auth } from "./views/Global"
+import { AppFrame, Home, Auth, NotFound } from './views/Global';
+import { Dashboard, Library, Search } from './views/Main';
+
+import 'boxicons/css/boxicons.css'
+
 
 
 ReactDOM.render(
@@ -24,7 +26,8 @@ ReactDOM.render(
             <Route path="register" element={<Auth signIn={false} />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="library" element={<Library />} />
-            <Route path="*" element={<AppFrame />} />
+            <Route path="search" element={<Search />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Route>
       </Routes>

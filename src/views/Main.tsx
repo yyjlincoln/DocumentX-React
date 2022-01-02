@@ -9,3 +9,9 @@ export function Library() {
         <div></div>
     )
 }
+
+export function Search() {
+    return (
+        <div></div>
+    )
+}
