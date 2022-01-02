@@ -3,13 +3,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-
 // Global Styles
 import './index.css';
 
 // App Views
 import App from './App';
 import { AppFrame, Home } from './views/Global';
+import { Dashboard, Library } from './views/Main';
+import { Auth } from "./views/Global"
 
 
 ReactDOM.render(
@@ -19,13 +20,16 @@ ReactDOM.render(
         <Route path="/" element={<App />}>
           <Route path="" element={<AppFrame />} >
             <Route path="" element={<Home />} />
-            <Route path="test" element={<Home />} />
+            <Route path="signin" element={<Auth signIn />} />
+            <Route path="register" element={<Auth signIn={false} />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="library" element={<Library />} />
+            <Route path="*" element={<AppFrame />} />
           </Route>
-          <Route path="*" element={<AppFrame />} />
         </Route>
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode >,
   document.getElementById('root')
 );
 
