@@ -13,7 +13,7 @@ export interface PageFrameProps {
 
 function NavBarItem({ children, className, ...args }: { children?: React.ReactNode, [key: string]: any }) {
     return (
-        <div className={`flex flex-col justify-center px-5 cursor-pointer hover:bg-gray-100 select-none ${className ?? ""}`} {...args}>
+        <div className={`flex flex-col justify-center px-5 cursor-pointer hover:bg-gray-100 active:bg-gray-200 select-none ${className ?? ""}`} {...args}>
             {children}
         </div>
     )
@@ -53,7 +53,7 @@ export default function PageFrame({ spacing = true, children, navigation = true 
         }}>
             {navigation && (
                 <Styled type="bg-blur" className="fixed flex flex-row w-full h-full h-16 shadow-md justify-between" style={{
-                    zIndex: 99999
+                    zIndex: 999999
                 }}>
                     <div className="flex flex-row">
                         {/* Left */}
@@ -101,6 +101,18 @@ export default function PageFrame({ spacing = true, children, navigation = true 
                                 {
                                     Links
                                 }
+                                <NavBarItem className="mt-8" onClick={() => {
+                                    if (userState !== null) {
+                                        navigate("/account")
+                                    } else {
+                                        navigate("/signin")
+                                    }
+                                    setNavigationMenu(false)
+                                }}>
+                                    <Text type="nav primary" className="py-3 sm:py-0 text-md">{
+                                        userState ? userState.name : "Sign in"
+                                    }</Text>
+                                </NavBarItem>
                             </Styled>
                         )
                     }

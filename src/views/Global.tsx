@@ -105,6 +105,7 @@ export function LoadingPage({ message }: LoadingPageProps) {
 
 export function NotFound() {
     const setPageSettings = useContext(PageSettingsContext)
+    const navigate = useNavigate()
     setPageSettings({
         // navigation: false
     })
@@ -112,8 +113,10 @@ export function NotFound() {
         <div>
             <Text type="main primary" responsive="text-3xl">Not Found</Text>
             <Text type="main secondary" responsive="text-2xl">We could not find the requested page.</Text>
-            
-            <Button>Home</Button>
+
+            <Button responsive="mt-4" onClick={() => {
+                navigate("/")
+            }}>Home</Button>
 
         </div>
     )
